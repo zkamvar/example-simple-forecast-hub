@@ -11,7 +11,7 @@
                             "optional": ["2022-10-01", "2022-10-08", "2022-10-15", "2022-10-15", "2022-10-22", "2022-10-29"]
                         },
                         "target": {
-                            "required": "wk ahead inc flu hosp",
+                            "required": "wk inc flu hosp",
                             "optional": null
                         },
                         "horizon": {
@@ -119,9 +119,8 @@
                                   "optional": null
                             },
                             "value": {
-                                "type": "numeric",
-                                "minimum": 0,
-                                "maximum": 1
+                                "type": "integer",
+                                "minimum": 0
                             }
                         }
                     }
