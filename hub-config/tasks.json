@@ -121,7 +121,21 @@
                             "type": "integer",
                             "minimum": 0
                         }
-                    }
+                    },
+                    "target_metadata": [
+                        {
+                            "target_id": "wk inc flu hosp",
+                            "target_name": "weekly incident influenza hospitalizations",
+                            "target_units": "count",
+                            "target_keys": {
+                                "target": ["wk inc flu hosp"]
+                            },
+                            "description": "This target represents a count of the number of new hospitalizations per week in a given location.",
+                            "is_step_ahead": true,
+                            "time_unit": "week"
+                        }
+
+                    ]
                 }
             }],
             "submissions_due": {
