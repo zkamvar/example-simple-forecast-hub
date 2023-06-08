@@ -10,7 +10,7 @@
                         "optional": ["2023-06-05", "2023-06-06", "2023-06-07", "2023-06-08", "2023-06-09", "2023-06-10"]
                     },
                     "target": {
-                        "required": ["inc flu hosp"],
+                        "required": ["inc covid hosp"],
                         "optional": null
                     },
                     "horizon": {
@@ -124,11 +124,11 @@
                     },
                     "target_metadata": [
                         {
-                            "target_id": "inc flu hosp",
-                            "target_name": "daily incident influenza hospitalizations",
+                            "target_id": "inc covid hosp",
+                            "target_name": "Daily incident COVID hospitalizations",
                             "target_units": "count",
                             "target_keys": {
-                                "target": ["inc flu hosp"]
+                                "target": ["inc covid hosp"]
                             },
                             "description": "This target represents a count of the number of new hospitalizations per day in a given location.",
                             "is_step_ahead": true,
