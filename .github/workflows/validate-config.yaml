@@ -1,11 +1,12 @@
-name: Hub Config Validation (R)
+name: Hub Submission Validation (R)
 
 on:
   workflow_dispatch:
   pull_request:
     branches: main
     paths:
-      - 'hub-config/**'
+      - 'model-output/**'
+      - 'model-metadata/*'
       - '!**README**'
 
 jobs:
@@ -35,10 +36,8 @@ jobs:
           PR_NUMBER: ${{ github.event.number }}
         run: |
           library("hubValidations")
-          v <- hubValidations::validate_pr(
-              gh_repo = Sys.getenv("GITHUB_REPOSITORY"),
-              pr_number = Sys.getenv("PR_NUMBER"),
-              skip_submit_window_check = FALSE
+          v <- hubValidations::check_config_hub_valid(
+            hub_path = "${{ github.workspace }}"
           )
           hubValidations::check_for_errors(v, verbose = TRUE)
         shell: Rscript {0}
