@@ -28,15 +28,30 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          packages: hubverse-org/hubValidations, any::sessioninfo
+          packages: any::gt, hubverse-org/hubValidations, any::sessioninfo
 
       - name: Run validations
+        id: validate
         env:
           PR_NUMBER: ${{ github.event.number }}
         run: |
           library("hubValidations")
-          v <- hubValidations::check_config_hub_valid(
+          v <- hubAdmin::validate_hub_config(
             hub_path = "${{ github.workspace }}"
           )
-          hubValidations::check_for_errors(v, verbose = TRUE)
+          if (isFALSE(v)) {
+            cat("result=false", file = Sys.getenv("GITHUB_OUTPUT"), append = TRUE)
+            # write output to HTML
+            tbl <- hubAdmin::view_config_val_errors(v)
+            writeLines("oh noes!\n", "${{ github.workspace }}/diff.md")
+            cat(gt::as_raw_html(tbl), "${{ github.workspace }}/diff.md", append = TRUE)
+          }
         shell: Rscript {0}
+      - name: "Comment on PR"
+        id: comment-diff
+        if: ${{ steps.validate.outputs.result == 'false' }}
+        uses: carpentries/actions/comment-diff@main
+        with:
+          pr: ${{ github.event.number }}
+          path: ${{ github.workspace }}/diff.md
+
