@@ -3,7 +3,7 @@
     "name": "Simple Forecast Hub",
     "maintainer": "Consortium of Infectious Disease Modeling Hubs",
     "contact": {
-        "name": "Joe Bloggs",
+        "name": ["Joe Bloggs"],
         "email": "j.bloggs@cidmh.com"
     },
     "repository": {
